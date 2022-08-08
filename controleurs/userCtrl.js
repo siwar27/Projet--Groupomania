@@ -11,9 +11,9 @@ const PASSWORD_REGEX = /^.{4,8}$/;
 //Routes
 module.exports = {
     addUser: (req, res) => {
-        let nom = req.body.nom;
-        let prenom = req.body.prenom;
-        let email = req.body.email;
+        let nom = req.body.Nom;
+        let prenom = req.body.Prenom;
+        let email = req.body.Email;
         let password = req.body.password;
         let isAdmin = req.body.isAdmin;
 
