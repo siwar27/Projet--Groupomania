@@ -18,12 +18,13 @@ async function postFormDataAsJson({ url, formData }) {
 	};
 
 	const response = await fetch(url, fetchOptions);
-
+   
 	if (!response.ok) {
 		const errorMessage = await response.text();
+        console.log("err",errorMessage);
 		throw new Error(errorMessage);
 	}
-
+    
 	return response.json();
 }
 
@@ -37,12 +38,27 @@ async function handleFormSubmit(event) {
 	try {
 		const formData = new FormData(form);
 		const responseData = await postFormDataAsJson({ url, formData });
+        
+        if(responseData.success){
+            window.location.href = "/";
+        }
 
 		console.log({ responseData });
 	} catch (error) {
+        if(error){
+            
+        }
 		console.error(error);
 	}
 }
+
+
+
+
+
+
+
+
 
 
 

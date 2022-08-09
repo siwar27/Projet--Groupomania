@@ -1,7 +1,8 @@
-var express = require('express');
+const express = require('express');
 const cookieParser = require('cookie-parser');
-var bodyParser  = require('body-parser');
-var apiRouter = require('./apiRouter').router;
+const bodyParser  = require('body-parser');
+const path = require('path');
+const apiRouter = require('./server/route/apiRouter').router;
 const cors = require('cors');
 
 const corsOptions = {
@@ -17,11 +18,27 @@ server.use(bodyParser.json());
 server.use(cookieParser());
 server.use(cors(corsOptions))
 
+
+// config view engine
+server.set('view engine', 'ejs');
+server.set('views', path.join(__dirname, 'views'));
+server.set('/img', path.join(__dirname + 'public/img'));
+
+
+server.use(express.static(path.join(__dirname + '/public')));
+
+// Declare view routes
 server.get('/', (req, res) => {
-    res.setHeader('Content-Type', 'text/html')
-    res.status(200).send('<h1>Bonjour server</h1>') 
+    res.render('home')
+});
+server.get('/connexion', (req, res) => {
+    res.render('connexion')
+});
+server.get('/register', (req, res) => {
+    res.render('inscription')
 });
 
+// Declare API routes
 server.use('/api', apiRouter);
 
 server.listen(3500, function() {
