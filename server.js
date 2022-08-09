@@ -4,6 +4,7 @@ const bodyParser  = require('body-parser');
 const path = require('path');
 const apiRouter = require('./server/route/apiRouter').router;
 const cors = require('cors');
+const userfetch = require('./userfetch');
 
 const corsOptions = {
     'Access-Control-Allow-Origin': '*'
@@ -28,18 +29,18 @@ server.set('/img', path.join(__dirname + 'public/img'));
 server.use(express.static(path.join(__dirname + '/public')));
 
 // Declare view routes
-server.get('/', (req, res) => {
-    res.render('home')
+server.get('/register', (req, res) => {
+    res.render('register')
 });
 server.get('/connexion', (req, res) => {
     res.render('connexion')
 });
-server.get('/register', (req, res) => {
-    res.render('inscription')
+server.get('/', (req, res) => {
+    res.render('home')
 });
 
 // Declare API routes
-server.use('/api', apiRouter);
+server.use('/', apiRouter);
 
 server.listen(3500, function() {
     console.log('Server en écoute :)');

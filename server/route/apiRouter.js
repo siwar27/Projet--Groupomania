@@ -8,7 +8,7 @@ exports.router = (function() {
     var apiRouter = express.Router();
     
 //Routes
-apiRouter.route('/addUser').post(userCtrl.addUser);
+apiRouter.route('/register').post(userCtrl.addUser);
 apiRouter.route('/me').get(userCtrl.getUserMe);
 apiRouter.route('/login').post(userCtrl.login);
 apiRouter.route('/put').put(userCtrl.PutUser);

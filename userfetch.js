@@ -1,55 +1,49 @@
-const exampleForm = document.getElementById("example-form");
-exampleForm.addEventListener("submit", handleFormSubmit);
 
 
+exports.addUser = (req, res) => {
+    res.render('register');
+    console.log("--------", req.body);
+   // const exampleForm = document.getElementById("example-form");
+    //exampleForm.addEventListener("submit", handleFormSubmit);
 
+    /*async function postFormDataAsJson({ url, formData }) {
+        const plainFormData = Object.fromEntries(formData.entries());
+        const formDataJsonString = JSON.stringify(plainFormData);
 
-async function postFormDataAsJson({ url, formData }) {
-	const plainFormData = Object.fromEntries(formData.entries());
-	const formDataJsonString = JSON.stringify(plainFormData);
+        const fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: formDataJsonString,
+        };
 
-	const fetchOptions = {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			Accept: "application/json",
-		},
-		body: formDataJsonString,
-	};
-
-	const response = await fetch(url, fetchOptions);
-   
-	if (!response.ok) {
-		const errorMessage = await response.text();
-        console.log("err",errorMessage);
-		throw new Error(errorMessage);
-	}
+        const response = await fetch(url, fetchOptions);
     
-	return response.json();
-}
-
-
-async function handleFormSubmit(event) {
-	event.preventDefault();
-
-	const form = event.currentTarget;
-	const url = form.action;
-
-	try {
-		const formData = new FormData(form);
-		const responseData = await postFormDataAsJson({ url, formData });
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            console.log("err",errorMessage);
+            throw new Error(errorMessage);
+        }
         
-        if(responseData.success){
-            window.location.href = "/";
-        }
+        return response.json();
+    }
+    async function handleFormSubmit(event) {
+        event.preventDefault();
 
-		console.log({ responseData });
-	} catch (error) {
-        if(error){
-            
+        const form = event.currentTarget;
+        const url = form.action;
+
+        try {
+            const formData = new FormData(form);
+            const responseData = await postFormDataAsJson({ url, formData });
+
+            console.log({ responseData });
+        } catch (error) {
+            console.error(error);
         }
-		console.error(error);
-	}
+    }*/
 }
 
 

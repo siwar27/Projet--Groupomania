@@ -18,13 +18,16 @@ module.exports = {
         let isAdmin = req.body.isAdmin;
 
         if (email == "" || nom == "" || prenom == "" || password == "") {
+            res.render('register', {errorMessage: 'Parametres manquantes'})
             return res.status(400).json({'error': 'Parametres manquantes'})
         }
         if(!EMAIL_REGEX.test(email)) {
+            res.render('register', {errorMessage: 'Email not valid'})
             return res.status(400).json({'error': 'Email not valid'})
         }
 
         if(!PASSWORD_REGEX.test(password)) {
+            res.render('register', {errorMessage: 'Password not valid'})
             return res.status(400).json({'error': 'Password not valid'})
         }
 
@@ -50,6 +53,7 @@ module.exports = {
                     })
                 }
                 else {
+                    res.render('register', {errorMessage: 'User Already exists'})
                     return res.status(409).json({'error': 'User Already exists'})
                 }
             },
@@ -67,14 +71,20 @@ module.exports = {
                 })
                 .catch((err) => {
                   console.log(err)
-                    return res.status(400).json({'error': 'An error occurred'})
+                    res.render('register', {errorhMessage: 'An error occurred'})
+                    res.status(400).json({'error': 'An error occurred'})
+                    return;
                 })
             }
         ], (newUser) => {
             if(newUser){
-                return res.status(201).json({'success': 'user successfuly created'})
+                res.render('register', {successhMessage: 'user successfuly created'})
+                res.redirect('/connexion')
+                return;
+                //return res.status(201).json({'success': 'user successfuly created'})
             }
             else {
+                res.render('register', {errorMessage: 'An error occurred'})
                 return res.status(400).json({ 'error': 'An error occurred'})
             }
         })
