@@ -1,5 +1,5 @@
 <%- include('./includes/header.ejs') %>
-    <section class="connexion">
+    <section class="page1">
         <img src="/img/icon-left-font.png" alt="png">
         <% if(locals.errorMessage) { %>
             <div class="alert alert-danger" role="alert">
@@ -7,10 +7,10 @@
             </div>
         <% } %>
         <% if(locals.successMessage) { %>
-        <div class="alert alert-success" role="alert">
-            <%= successMessage %>
-        </div>
-    <% } %>
+            <div class="alert alert-success" role="alert">
+                <%= successMessage %>
+            </div>
+         <% } %>
         <form action="/register" method="post" id="example-form">
             <div class="for">
                 <label class="titre" for="Nom">Nom:</label>

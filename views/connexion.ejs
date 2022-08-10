@@ -1,23 +1,32 @@
 <%- include('./includes/header.ejs') %>
     <section class="connexion">
         <img src="/img/icon-left-font.png" alt="png">
-        <form action="http://localhost:3500/api/login" method="put" id="login">
-        <div class="for">
-            <label class="titre" for="Email">Email:</label>
-            <input class="titre" type="email" id="Email" name="Email" placeholder="Email"><br>
-            <label class="titre" for="password">Password:</label>
-            <input class="titre" type="password" id="password" name="password" placeholder="password">
+        <% if(locals.errorMessage) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= errorMessage %>
+            </div>
+        <% } %>
+        <% if(locals.successMessage) { %>
+            <div class="alert alert-success" role="alert">
+                <%= successMessage %>
+            </div>
+         <% } %>
+        <form action="/login" method="post" id="login">
+            <div class="for">
+                <label class="titre" for="Email">Email:</label>
+                <input class="titre" type="email" id="Email" name="email" placeholder="Email"><br>
+                <label class="titre" for="password">Password:</label>
+                <input class="titre" type="password" id="password" name="password" placeholder="password">
 
-            <input type="submit" value="Se connecter" id="Se-connecter"/><br>
-            <a href="Inscription.html">Creer un compte</a>
+                <input type="submit" value="Se connecter" id="Se-connecter"/><br>
+                <a href="Inscription.html">Creer un compte</a>
 
-           
+            
 
-        </div>
+            </div>
         </form>
     
 
     </section>
-    <script type= "text/javascript" src="userfetch.js"></script>
 </body>
 </html>

@@ -78,10 +78,10 @@ module.exports = {
             }
         ], (newUser) => {
             if(newUser){
-                res.render('register', {successhMessage: 'user successfuly created'})
-                res.redirect('/connexion')
-                return;
-                //return res.status(201).json({'success': 'user successfuly created'})
+                res.render('register', {successMessage: 'user successfuly created'}, res.redirect('/login'))
+               
+                 
+               // return res.status(201).json({'success': 'user successfuly created'})
             }
             else {
                 res.render('register', {errorMessage: 'An error occurred'})
@@ -123,25 +123,28 @@ module.exports = {
   },
 
     login: (req, res) => {
-    
+        console.log(req.body);
         // Params
         var email    = req.body.email;
         var password = req.body.password;
     
-        if (email == null ||  password == null) {
-          return res.status(400).json({ 'error': 'missing parameters' });
+        if (email === null ||  password === null) {
+          res.render('connexion', {errorMessage: 'missing parameters toto '});
+          //return res.status(400).json({ 'error': 'missing parameters' });
         }
         asyncLib.waterfall([
             (done) => {
+              console.log('----1--------', email)
               models.User.findOne({
                   where: { email: email }
-              })
+              }, console.log('-----2-------', email))
               .then((userFound) => {
                   done(null, userFound);
               })
               .catch((err) => {
                   console.log(err)
-                  return res.status(500).json({ 'error': 'unable to verify user' });
+                  res.render('connexion',{errorMessage: err + ' -----   unable to verify user'});
+                  //return res.status(500).json({ 'error': 'unable to verify user' });
               });
             },
             (userFound, done) => {
@@ -152,7 +155,8 @@ module.exports = {
                 });
               } 
               else {
-                return res.status(404).json({ 'error': 'user not exist in DB' });
+                res.render('connexion',{errorMessage:'user not exist in DB'});
+                //return res.status(404).json({ 'error': 'user not exist in DB' });
               }
             },
             (userFound, resBycrypt, done) => {
@@ -160,7 +164,8 @@ module.exports = {
                 done(userFound);
               } 
               else {
-                return res.status(403).json({ 'error': 'invalid password' });
+                res.render('connexion',{errorMessage:'invalid password'});
+                //return res.status(403).json({ 'error': 'invalid password' });
               }
             }
           ], 
@@ -168,13 +173,14 @@ module.exports = {
             if (userFound) {
               let token = jwtUtils.generateTokenForUser(userFound);
               res.cookie('auth',token);   
-              res.status(201).json({
-                'id': userFound.id,
-                'token': token
-              });
+              // res.status(201).json({
+              //   'id': userFound.id,
+              //   'token': token
+              // })
+              res.render('connexion',{successMessage:'WELCOME HOME !'}, res.redirect('/'));
             } 
             else {
-              return res.status(500).json({ 'error': 'cannot log on user' });
+              res.render('connexion',{errorMessage:'cannot log user'});
             }
           })
         },

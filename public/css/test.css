@@ -10,7 +10,7 @@ body{
 }
 
 
-.connexion{
+.page1{
     display:flex;
     flex-direction: column;
     justify-content:space-between;
@@ -26,7 +26,7 @@ body{
 
 }
 
-.connexion img{
+.page1 img{
     width:250px;
     align-self: center;
     margin:45px 0 0 0 ;
@@ -76,7 +76,7 @@ a{
 
     }
     
-    .connexion{
+    .page1{
         width: 50%;
     }
 
@@ -97,11 +97,11 @@ a{
         margin:30% 0 0 0;
     }
 
-    .connexion{
+    .page1{
         width: 65%;
         height: 300px;
     }
-    .connexion img{
+    .page1 img{
         width: 150px;
         margin: 35px 0 0 0;
     }

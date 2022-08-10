@@ -9,7 +9,7 @@ body{
 
 
 }
-.connexion{
+.page1{
     display:flex;
     flex-direction: column;
     justify-content:space-between;
@@ -25,7 +25,7 @@ body{
 
 }
 
-.connexion img{
+.page1 img{
     width:250px;
     align-self: center;
     margin:45px 0 0 0 ;
@@ -329,7 +329,7 @@ h6 {
 
     }
     
-    .connexion{
+    .page1{
         width: 50%;
     }
 
@@ -338,7 +338,7 @@ h6 {
     }
     
 
-    .connexion img{
+    .page1 img{
         
         align-self: center;
         margin:45px 20px 0 20px ;
@@ -365,11 +365,11 @@ h6 {
         margin:30% 0 0 0;
     }
 
-    .connexion{
+    .page1{
         width: 65%;
         height: 900px;
     }
-    .connexion img{
+    .page1 img{
         width: 100px;
         margin: 35px 0 0 0;
     }
@@ -395,7 +395,7 @@ h6 {
         font-size: 12px;
     }
 
-    .connexion img{
+    .page1 img{
         width:130px;
         align-self: center;
         margin:60px 0px 10px 30px ;

@@ -46,6 +46,10 @@ exports.addUser = (req, res) => {
     }*/
 }
 
+exports.login = (req, res) => {
+    res.render('connexion');
+    console.log("--------", req.body);}
+
 
 
 

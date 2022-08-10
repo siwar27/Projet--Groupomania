@@ -31,8 +31,9 @@ server.use(express.static(path.join(__dirname + '/public')));
 // Declare view routes
 server.get('/register', (req, res) => {
     res.render('register')
+    
 });
-server.get('/connexion', (req, res) => {
+server.get('/login', (req, res) => {
     res.render('connexion')
 });
 server.get('/', (req, res) => {
