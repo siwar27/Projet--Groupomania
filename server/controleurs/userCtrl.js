@@ -10,7 +10,7 @@ const PASSWORD_REGEX = /^.{4,8}$/;
 
 //Routes
 module.exports = {
-    addUser: (req, res) => {
+  addUser: (req, res) => {
         let nom = req.body.Nom;
         let prenom = req.body.Prenom;
         let email = req.body.Email;
@@ -89,7 +89,7 @@ module.exports = {
             }
         })
     },
-    getUser: (req, res) => {
+  getUser: (req, res) => {
       var userId = req.params.id;
 
       models.User.findOne({
@@ -122,7 +122,7 @@ module.exports = {
       });
   },
 
-    login: (req, res) => {
+  login: (req, res) => {
         console.log(req.body);
         // Params
         var email    = req.body.email;
@@ -183,8 +183,8 @@ module.exports = {
               res.render('connexion',{errorMessage:'cannot log user'});
             }
           })
-        },
-        getUserMe: (req, res) => {
+  },
+  getUserMe: (req, res) => {
         
           let headerAuth = req.headers['authorization']
           let userId = jwtUtils.getUserId(headerAuth)
@@ -209,8 +209,8 @@ module.exports = {
             .catch((err) => {
               res.status(500).json({ 'error': 'cannot fetch user' });
             });
-        },
-        PutUser: ( req, res) => {
+  },
+  PutUser: ( req, res) => {
           let headerAuth  = req.headers['authorization'];
           let userId = jwtUtils.getUserId(headerAuth);
           
@@ -259,8 +259,8 @@ module.exports = {
                return res.status(500).json({ 'error': 'cannot update user profile' });
              }
            });
-        },
-        deleteUser: (req, res) => {
+  },
+  deleteUser: (req, res) => {
         
           let headerAuth  = req.headers['authorization'];
           let userId      = jwtUtils.getUserId(headerAuth);
@@ -287,5 +287,5 @@ module.exports = {
                       return res.status(404).json({ 'error': 'User was not found' });
                   }
               });
-      },
+  },
 }
